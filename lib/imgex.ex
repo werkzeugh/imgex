@@ -124,7 +124,7 @@ defmodule Imgex do
   defp path_with_params(path, params) when params == %{}, do: path
 
   defp path_with_params(path, params) when is_map(params) do
-    path <> "?" <> URI.encode_query(params)
+    path <> "?" <> (URI.encode_query(params)|> String.replace("%2C",","))
   end
 
   # Default set of target widths, borrowed from JS and Ruby Imgix libraries.
